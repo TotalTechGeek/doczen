@@ -8,7 +8,7 @@ The gist is that it'll fetch documentation from your projects and help you bundl
 ### Help Output
 
 ```
-$ doczen -h confluence -h current
+
 Version: 0.0.3
 Main: A tool designed to super-charge your code-base's documentation.
 -i, --input <glob>       Glob of files to parse.
@@ -23,5 +23,9 @@ Confluence: Exports a collection of markdown files to Confluence.
 
 
 Current: Validates that the documentation is up to date by checking the files that it references.
+
 No command line options.
+
+In the header of your documentation, you may specify a "files" property, which is an array of globs. Ex.
+files: ["*.tsx"]
 ```

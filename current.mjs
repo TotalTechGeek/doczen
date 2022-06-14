@@ -38,6 +38,10 @@ export async function run (files) {
 export function help () {
     return `
     Current: Validates that the documentation is up to date by checking the files that it references.
+
     No command line options.
+
+    In the header of your documentation, you may specify a "files" property, which is an array of globs. Ex.
+    files: ["*.tsx"]
     `.replace(/\n[ ]+/g, '\n')
 }
