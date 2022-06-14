@@ -8,7 +8,7 @@ The gist is that it'll fetch documentation from your projects and help you bundl
 ### Help Output
 
 ```
-
+$ doczen -h confluence -h current
 Version: 0.0.3
 Main: A tool designed to super-charge your code-base's documentation.
 -i, --input <glob>       Glob of files to parse.
