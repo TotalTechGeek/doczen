@@ -1,21 +1,15 @@
 import superagent from 'superagent'
 import MarkdownIt from 'markdown-it'
 import markdownItContainer from 'markdown-it-container'
-import minimist from 'minimist'
 import { getZeroWidthHash } from './hash.mjs'
-
-const options = minimist(process.argv.slice(2))
-options.space = options.space || options.s 
-options.url = options.url || options.u || ''
-options.input = options.input || options.i
 
 const AUTHORIZATION = process.env.AUTHORIZATION || process.env.CONFLUENCE_AUTHORIZATION
 const PAGE_SIZE = 1000
-const SPACE_KEY = options.space
-const base = options.url.includes('://') ? options.url : `https://${options.url}.atlassian.net`
-const contentBase = `${base}/wiki/rest/api/content`
-const url = `${contentBase}?limit=${PAGE_SIZE}&spaceKey=${SPACE_KEY}&expand=version&status=current`
 
+let SPACE_KEY
+let base
+let contentBase
+let url
 
 /**
  * Used to get all the pages of the GEN wiki, in order to get a title dictionary. 
@@ -39,7 +33,6 @@ const url = `${contentBase}?limit=${PAGE_SIZE}&spaceKey=${SPACE_KEY}&expand=vers
 
 
 /**
- * 
  * @param {Omit<import('./models.mjs').Page, 'parent'>[]} pages 
  */
 async function createPages (pages) {
@@ -164,11 +157,20 @@ function createAtlassianPanel (icon, iconId, bgColor) {
 }
 
 /**
- * 
  * @param {import('./models.mjs').RawPage[]} pages 
+ * @param {any} options
  */
-export async function run (pages) {
+export async function run (pages, options) {
+    options.space = options.space || options.s 
+    options.url = options.url || options.u || ''
+    options.input = options.input || options.i
     if (!options.space || !options.url) throw new Error('You must specify a space and a url/user to use the confluence export')
+
+    // This is horrible, but I'll refactor the functions later on. This was unintentional, but a side-effect of making this a plugin.
+    SPACE_KEY = options.space
+    base = options.url.includes('://') ? options.url : `https://${options.url}.atlassian.net`
+    contentBase = `${base}/wiki/rest/api/content`
+    url = `${contentBase}?limit=${PAGE_SIZE}&spaceKey=${SPACE_KEY}&expand=version&status=current`
 
     const md = new MarkdownIt({
         xhtmlOut: true,
@@ -191,4 +193,13 @@ export async function run (pages) {
         ...page,
         content: md.render(page.content)
     })))
+}
+
+
+export function help () {
+    return `
+    Confluence: Exports a collection of markdown files to Confluence.
+    -s, --space <space>     The space key to export to
+    -u, --url <url>         The url of the confluence instance
+    `.replace(/\n[ ]+/g, '\n')
 }

@@ -34,3 +34,10 @@ export async function run (files) {
     }
     if (count) process.exit(count)
 }
+
+export function help () {
+    return `
+    Current: Validates that the documentation is up to date by checking the files that it references.
+    No command line options.
+    `.replace(/\n[ ]+/g, '\n')
+}
