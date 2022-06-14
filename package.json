@@ -9,6 +9,10 @@
   "bin": {
     "doczen": "./index.mjs"
   },
+  "repository": {
+    "type": "git+https",
+    "url": "https://github.com/TotalTechGeek/doczen"
+  },
   "author": "Jesse Daniel Mitchell",
   "license": "MIT",
   "dependencies": {
