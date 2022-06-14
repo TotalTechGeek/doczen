@@ -1,13 +1,13 @@
 {
-  "name": "doc-zen",
-  "version": "0.0.1",
+  "name": "@doczen/doczen",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "doczer": "./index.mjs"
+    "doczen": "./index.mjs"
   },
   "author": "Jesse Daniel Mitchell",
   "license": "MIT",
