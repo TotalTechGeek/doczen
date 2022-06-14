@@ -215,7 +215,7 @@ async function main () {
         const { data, content } = matter.default(fs.readFileSync(file, 'utf8'))
         return { 
             source: file,
-            title: options.prefix ? `${options.prefix}/${data.title}` :data.title,
+            title: options.prefix && data.title ? `${options.prefix}/${data.title}` :data.title,
             content: md.render(content)
         }
     }).filter(i => i.title)
