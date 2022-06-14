@@ -120,7 +120,7 @@ function unwrapPages (obj, arr = [], parent = undefined) {
         arr.push({
             title: item,
             content: (data.content || '<Title /><TableOfContents />')
-                .replace(/\<TableOfContents ?\/\>/, tableOfContents(item, Object.keys(data.pages)))
+                .replace(/\<TableOfContents ?\/\>/, tableOfContents(item, Object.keys(data.pages), parent))
                 .replace(/\<Title ?\/\>/, `<h1>${item}</h1>\n`),
             parent
         })
@@ -135,9 +135,9 @@ function unwrapPages (obj, arr = [], parent = undefined) {
  * @param {string} title 
  * @param {string[]} keys 
  */
-function tableOfContents (title, keys) {
+function tableOfContents (title, keys, parent = '') {
     return `<ul>${keys.map(key => { 
-        key += `${getZeroWidthHash(title + '$' + key).substring(0, 6)}`
+        key += `${getZeroWidthHash(`${parent ? `${parent}/` : ''}${title}$${key}`).substring(0, 6)}`
         return `<li><ac:link><ri:page ri:content-title="${key}" /><ac:plain-text-link-body><![CDATA[${key}]]></ac:plain-text-link-body></ac:link></li>` 
     }).join('')}</ul>`
 }
