@@ -19,6 +19,8 @@ export function help () {
     Main: A tool designed to super-charge your code-base's documentation.
     -i, --input <glob>       Glob of files to parse.
     -p, --prefix <prefix>    Prefix to add to all titles.
+    -x, --export <module>    A module used by doczen, executed left to right.
+    -h, --help <module>      Gets help for the specified module.
     `.replace(/\n[ ]+/g, '\n')
 }
 
