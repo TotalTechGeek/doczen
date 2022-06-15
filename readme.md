@@ -1,6 +1,3 @@
----
-title: Readme
----
 # Doczen
 
 Documentation coming soon, ironic for a documentation tool, huh?
