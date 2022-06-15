@@ -16,7 +16,7 @@ if (!options.input.length && !options.help.length) throw new Error('No input glo
 
 export function help () {
     return `
-    Version: 0.0.4
+    Version: 0.0.5
     Main: A tool designed to super-charge your code-base's documentation.
     -i, --input <glob>       Glob of files to parse. (You may use multiple -i flags)
     -p, --prefix <prefix>    Prefix to add to all titles.
@@ -40,7 +40,7 @@ async function main () {
         return
     }
 
-    const files = glob.sync(`*(${options.input.join('|')})`, { ignore: options.exclude })
+    const files = options.input.flatMap(input => glob.sync(input, { ignore: options.exclude }))
 
     const firstExportIndex = process.argv.findIndex(i => i === '-x')
     const transform = process.argv.find((i, x) => (x < firstExportIndex || firstExportIndex === -1) && process.argv[x - 1] === '-t')
@@ -51,11 +51,16 @@ async function main () {
         return transformFunc({ 
             source: pathToFileURL(file).pathname,
             relativeSource: file,
-            title: options.prefix && data.title ? `${options.prefix}/${data.title}` : data.title,
+            title: data.title,
             content,
             data
         })
-    }).filter(i => i && i.title)
+    })
+    .filter(i => i && i.title)
+    .map(i => ({
+        ...i,
+        title: options.prefix && i.title ? `${options.prefix}/${i.title}` : i.title
+    }))
 
     for (const item of options.export) {
         // find the item in the arguments
