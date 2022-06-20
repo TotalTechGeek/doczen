@@ -3,7 +3,7 @@
 <p align="center">
 <img width=500 alt="An image of a dachshund with the title Doczen underneath it" src="./images/doczen%20logo-01.svg" /><br/> <p align="center" style="font-size: 18px;">A tool to supercharge your documentation. </p>
 
-Doczen is a tool that'll fetch documentation from your projects for bundling, validation, and exporting them to other systems, like Confluence.
+Doczen is a tool that'll fetch documentation from your projects for bundling, validation, and exporting to other systems, like Confluence.
 
 ### What this project is / is not
 
