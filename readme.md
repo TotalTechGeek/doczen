@@ -17,7 +17,7 @@ Instead, we encourage you to use Doczen to feed those tools, and in the near fut
 
 ```txt
 $ doczen -h confluence -h current -h copy
-Version: 0.0.4
+Version: 0.0.5
 Main: A tool designed to super-charge your code-base's documentation.
 -i, --input <glob>       Glob of files to parse. (You may use multiple -i flags)
 -p, --prefix <prefix>    Prefix to add to all titles.
@@ -44,9 +44,10 @@ Copy: Exports the documentation / configuration files to a specified folder.
 Usually to use with a build stage in a pipeline.
 --to <folder>     The folder to export to.
 --extension <ext> The extension to use for the files. (default: md)
+--plain           Do not export the header information.
 
 Remember that you can use a "-t" flag to preprocess the files before they are exported,
-this is useful if you need to inject additional metadata. 
+this is useful if you need to inject additional metadata.
 ```
 
 ### Examples
