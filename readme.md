@@ -1,8 +1,8 @@
 # Doczen
 
-Documentation coming soon, ironic for a documentation tool, huh?
+![An image of a dachshund with the title "Doczen" underneath it](./images/doczen%20logo-01.svg)
 
-The gist is that it'll fetch documentation from your projects and help you bundle, validate, and export them to other systems, like Confluence.
+Doczen is a tool that'll fetch documentation from your projects for bundling, validation, and exporting them to other systems, like Confluence.
 
 ### What this project is / is not
 
